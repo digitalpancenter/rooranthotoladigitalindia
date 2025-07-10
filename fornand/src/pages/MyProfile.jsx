@@ -19,7 +19,7 @@ const MyProfile = () => {
       }
 
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/profile", {
+        const res = await axios.get("https://rooranthotoladigitalindia.onrender.com/api/auth/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
