@@ -15,7 +15,7 @@ const LoginByToken = () => {
     localStorage.setItem("token", token);
 
     // Optionally: verify token or fetch user info
-    axios.get("http://localhost:5000/api/auth/profile", {
+    axios.get("https://rooranthotoladigitalindia.onrender.com/api/auth/profile", {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       if (res.data.role === "admin") navigate("/admin");

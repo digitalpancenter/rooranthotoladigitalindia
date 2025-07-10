@@ -16,7 +16,7 @@ const AdminRoomRents = () => {
 
   const fetchRents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/all-roomrents", {
+      const res = await axios.get("https://rooranthotoladigitalindia.onrender.com/api/all-roomrents", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRents(res.data);
@@ -28,7 +28,7 @@ const AdminRoomRents = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this record?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/roomrents/${id}`, {
+      await axios.delete(`https://rooranthotoladigitalindia.onrender.com/api/roomrents/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchRents();
@@ -89,7 +89,7 @@ const AdminRoomRents = () => {
         shortage,
         expectedAmount: parseInt(editData.expectedAmount || 2000),
       };
-      await axios.put(`http://localhost:5000/api/roomrents/${editData._id}`, updatedData, {
+      await axios.put(`https://rooranthotoladigitalindia.onrender.com/api/roomrents/${editData._id}`, updatedData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Updated successfully");

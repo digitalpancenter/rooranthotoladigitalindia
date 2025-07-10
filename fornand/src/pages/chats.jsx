@@ -44,7 +44,7 @@ const Chats = () => {
       if (photo) formDataToSend.append("photo", photo);
       if (pdf) formDataToSend.append("pdf", pdf);
 
-      const res = await fetch("http://localhost:5000/api/email/send-email", {
+      const res = await fetch("https://rooranthotoladigitalindia.onrender.com/api/email/send-email", {
         method: "POST",
         body: formDataToSend,
       });

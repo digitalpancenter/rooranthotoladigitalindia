@@ -12,7 +12,7 @@ const AdminRoomConfirmation = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/room-confirmation-tax")
+    fetch("https://rooranthotoladigitalindia.onrender.com/api/room-confirmation-tax")
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -36,7 +36,7 @@ const AdminRoomConfirmation = () => {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/room-confirmation-tax", {
+      const res = await fetch("https://rooranthotoladigitalindia.onrender.com/api/room-confirmation-tax", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

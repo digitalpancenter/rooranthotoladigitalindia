@@ -51,7 +51,7 @@ const AdminAllUsers = () => {
 
   const handleUpdate = () => {
     axios
-      .put(`http://localhost:5000/api/auth/user/${editingUser}`, formData, {
+      .put(`https://rooranthotoladigitalindia.onrender.com/api/auth/user/${editingUser}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {

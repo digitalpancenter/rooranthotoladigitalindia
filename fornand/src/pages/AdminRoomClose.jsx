@@ -19,7 +19,7 @@ const AdminRoomClose = () => {
 
   const fetchRecords = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/room-close");
+      const res = await fetch("https://rooranthotoladigitalindia.onrender.com/api/room-close");
       const data = await res.json();
       setRecords(data);
     } catch (err) {
@@ -36,8 +36,8 @@ const AdminRoomClose = () => {
 
     try {
       const url = editingId
-        ? `http://localhost:5000/api/room-close/${editingId}`
-        : "http://localhost:5000/api/room-close";
+        ? `https://rooranthotoladigitalindia.onrender.com/api/room-close/${editingId}`
+        : "https://rooranthotoladigitalindia.onrender.com/api/room-close";
 
       const method = editingId ? "PUT" : "POST";
 
@@ -75,7 +75,7 @@ const AdminRoomClose = () => {
     if (!window.confirm("Are you sure to delete?")) return;
 
     try {
-      await fetch(`http://localhost:5000/api/room-close/${id}`, {
+      await fetch(`https://rooranthotoladigitalindia.onrender.com/api/room-close/${id}`, {
         method: "DELETE",
       });
       fetchRecords();

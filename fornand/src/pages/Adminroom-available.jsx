@@ -29,8 +29,8 @@ const AdminRoomAvailable = () => {
   // Save or Update
   const handleSubmit = async () => {
     const url = editId
-      ? `http://localhost:5000/api/room-availability/${editId}`
-      : "http://localhost:5000/api/room-availability";
+      ? `https://rooranthotoladigitalindia.onrender.com/api/room-availability/${editId}`
+      : "https://rooranthotoladigitalindia.onrender.com/api/room-availability";
 
     const method = editId ? "PUT" : "POST";
 

@@ -48,7 +48,7 @@ export default function RoomRents() {
 
   const fetchRents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/roomrents", {
+      const res = await axios.get("https://rooranthotoladigitalindia.onrender.com/api/roomrents", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRents(res.data);
@@ -71,7 +71,7 @@ export default function RoomRents() {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/roomrents", updatedForm, {
+      await axios.post("https://rooranthotoladigitalindia.onrender.com/api/roomrents", updatedForm, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

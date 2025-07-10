@@ -7,7 +7,7 @@ const VerifyOtp = ({ email, onVerified }) => {
 
   const handleVerify = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/password-reset/verify-otp", {
+      const res = await axios.post("https://rooranthotoladigitalindia.onrender.com/api/password-reset/verify-otp", {
         email,
         otp,
       });
