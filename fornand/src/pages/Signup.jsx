@@ -91,7 +91,7 @@ const Signup = () => {
           className="w-full mb-4 px-4 py-2 border rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="retailer">Retailer</option>
-          <option value="admin">Admin</option>
+         {/* <option value="admin">Admin</option> */}
         </select>
 
         {/* Submit */}
