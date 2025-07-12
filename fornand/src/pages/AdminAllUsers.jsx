@@ -103,28 +103,36 @@ const AdminAllUsers = () => {
                     className="w-10 h-10 rounded-full"
                   />
                 ) : (
-                  "No Photo"
+                  <span>No Photo</span>
                 )}
               </td>
               <td className="p-2">{u.name}</td>
               <td className="p-2">{u.email}</td>
               <td className="p-2">{u.mobile || "-"}</td>
               <td className="p-2">{u.address || "-"}</td>
-              <td className="p-2">{u.password || "-"}</td> {/* ⚠️ Use only for testing */}
+              <td className="p-2">
+                {u.password ? (
+                  <span className="text-gray-400">[Hidden]</span>
+                ) : (
+                  "-"
+                )}
+              </td>
               <td className="p-2">{u.role}</td>
-              <td className="p-2 flex gap-2">
-                <button
-                  onClick={() => handleEdit(u)}
-                  className="text-blue-600"
-                >
-                  ✏️
-                </button>
-                <button
-                  onClick={() => handleDelete(u._id)}
-                  className="text-red-600"
-                >
-                  🗑️
-                </button>
+              <td className="p-2">
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEdit(u)}
+                    className="text-blue-600"
+                  >
+                    ✏️
+                  </button>
+                  <button
+                    onClick={() => handleDelete(u._id)}
+                    className="text-red-600"
+                  >
+                    🗑️
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
