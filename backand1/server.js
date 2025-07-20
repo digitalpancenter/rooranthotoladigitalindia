@@ -1,3 +1,4 @@
+// === BACKEND: server.js ===
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,15 +7,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB (replace 'yourdbname' with your actual DB name)
-mongoose.connect('mongodb://localhost:27017/yourdbname', {
+mongoose.connect('mongodb+srv://radigitalindia:h0rn7AsBvTnZgsgV@radigitalindia.pvxmh92.mongodb.net/?retryWrites=true&w=majority&appName=radigitalindia', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch((err) => console.error('MongoDB connection error:', err));
 
-// Define the Mongoose schema and model
 const FormSchema = new mongoose.Schema({
- fullName: String,
+  fullName: String,
   userId: String,
   mobile: String,
   email: String,
@@ -24,24 +25,29 @@ const FormSchema = new mongoose.Schema({
   digitalIndiaText: String,
   address: String,
   phone: String,
-  companyEmail: String,     // NEW field
+  companyEmail: String,
   authorizedSignature: String
 });
 
+
 const Form = mongoose.model('Form', FormSchema);
 
-// POST route to save form data
-app.post('/api/save', async (req, res) => {
+app.post("/api/save", async (req, res) => {
   try {
-    const form = new Form(req.body);
-    await form.save();
-    res.status(201).send({ message: 'Data saved' });
+    console.log("Incoming data:", req.body);
+    const formData = new FormModel(req.body);
+    await formData.save();
+    res.status(201).send({ message: "Saved" });
   } catch (err) {
-    res.status(500).send({ error: 'Failed to save' });
+    console.error("❌ Error saving form:", err.message);
+    res.status(500).send({ error: "Save failed" });
   }
 });
 
-// PUT to update a user by ID
+
+
+
+
 app.put('/api/forms/:id', async (req, res) => {
   try {
     const updatedUser = await Form.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -52,8 +58,6 @@ app.put('/api/forms/:id', async (req, res) => {
   }
 });
 
-
-// DELETE a user by ID
 app.delete('/api/forms/:id', async (req, res) => {
   try {
     const deletedUser = await Form.findByIdAndDelete(req.params.id);
@@ -64,7 +68,6 @@ app.delete('/api/forms/:id', async (req, res) => {
   }
 });
 
-// GET route to fetch all saved form data
 app.get('/api/forms', async (req, res) => {
   try {
     const forms = await Form.find();
@@ -74,7 +77,6 @@ app.get('/api/forms', async (req, res) => {
   }
 });
 
-// GET route to fetch the latest saved form
 app.get('/api/forms/latest', async (req, res) => {
   try {
     const latestForm = await Form.findOne().sort({ _id: -1 });
@@ -85,5 +87,4 @@ app.get('/api/forms/latest', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(5000, () => console.log('Server running on port 5000'));
+app.listen(5000, () => console.log('Server running on port 5000'))

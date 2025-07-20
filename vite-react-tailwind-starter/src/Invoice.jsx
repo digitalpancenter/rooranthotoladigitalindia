@@ -9,7 +9,7 @@ const Invoice = () => {
   useEffect(() => {
     const fetchFormData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/forms/latest");
+        const res = await axios.get("https://form-qvht.onrender.com/api/forms/latest");
         setFormData(res.data);
       } catch (error) {
         console.error("Error fetching invoice data:", error);
@@ -32,6 +32,9 @@ const Invoice = () => {
   const serviceCharge = 18;
   const gst = 18;
   const finalBalance = baseAmount - serviceCharge - gst;
+
+  const today = new Date();
+  const formattedDate = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
 
   return (
     <div className="max-w-4xl mx-auto my-8 px-4">
@@ -86,7 +89,6 @@ const Invoice = () => {
       </div>
 
       <div ref={invoiceRef} className="border p-6 font-sans text-sm bg-white">
-        {/* Header */}
         <div className="flex justify-between items-center border-b-4 border-blue-500 pb-4">
           <div>
             <div className="text-2xl font-bold text-blue-600">
@@ -98,7 +100,6 @@ const Invoice = () => {
           </div>
         </div>
 
-        {/* Company Info */}
         <div className="flex justify-between mt-4">
           <div>
             <p className="font-bold italic">{formData.digitalIndiaText || "DIGITAL INDIA"}</p>
@@ -112,12 +113,10 @@ const Invoice = () => {
           </div>
           <div className="text-right space-y-1">
             <p>
-              <span className="font-bold">Date:</span>{" "}
-              {new Date().toLocaleDateString()}
+              <span className="font-bold">Date:</span> {formattedDate}
             </p>
             <p>
-              <span className="font-bold">Invoice #</span>{" "}
-              {(formData._id || "unknown").slice(-6).toUpperCase()}
+              <span className="font-bold">Invoice #</span> {(formData._id || "unknown").slice(-6).toUpperCase()}
             </p>
             <p>
               <span className="font-bold">PO #</span> {formData.userId || ""}
@@ -125,7 +124,6 @@ const Invoice = () => {
           </div>
         </div>
 
-        {/* Bill To */}
         <div className="bg-blue-500 text-white mt-6 px-2 py-1 font-bold">Bill To:</div>
         <div className="border px-2 py-2">
           <p>{formData.fullName}</p>
@@ -135,7 +133,6 @@ const Invoice = () => {
           <p>Email: {formData.email}</p>
         </div>
 
-        {/* Table */}
         <table className="w-full mt-6 border border-collapse">
           <thead className="bg-blue-500 text-white">
             <tr>
@@ -151,28 +148,25 @@ const Invoice = () => {
               <td className="border px-2 py-1">₹{serviceCharge.toFixed(2)}</td>
             </tr>
             <tr className="bg-blue-50">
-              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">2</td>
               <td className="border px-2 py-1">GST (Fixed)</td>
               <td className="border px-2 py-1">₹{gst.toFixed(2)}</td>
             </tr>
             <tr className="bg-blue-100 font-bold">
-              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">3</td>
               <td className="border px-2 py-1">Final Balance</td>
               <td className="border px-2 py-1">₹{finalBalance.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
 
-        {/* Bottom section with Signature & Totals */}
         <div className="flex justify-between items-start mt-10">
-          {/* Left - Signature */}
           <div className="text-left">
             <p className="text-sm mb-1">Authorized Signature</p>
             <p className="font-signature">{formData.authorizedSignature || "RAHUL"}</p>
             <span className="signature-flourish"></span>
           </div>
 
-          {/* Right - Totals */}
           <div className="text-right space-y-1">
             <p>Paid Amount: ₹{baseAmount.toFixed(2)}</p>
             <p>Service Charge: ₹{serviceCharge.toFixed(2)}</p>
@@ -183,11 +177,9 @@ const Invoice = () => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="mt-6 text-sm">
           <p>
-            Make all checks payable to &lt;{formData.digitalIndiaText || "DIGITAL INDIA"}&gt;. Or submit payment
-            via &lt;UPI / Bank Transfer&gt;.
+            Make all checks payable to &lt;{formData.digitalIndiaText || "DIGITAL INDIA"}&gt;. Or submit payment via &lt;UPI / Bank Transfer&gt;.
           </p>
           <p className="font-bold italic mt-2">Thank you for your business!</p>
         </div>
